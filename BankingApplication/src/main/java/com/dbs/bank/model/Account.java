@@ -11,6 +11,7 @@ import lombok.Data;
 @Table
 public class Account {
 	
+	@Id
 	private long accountNum;
 	private String accountType;
 	
