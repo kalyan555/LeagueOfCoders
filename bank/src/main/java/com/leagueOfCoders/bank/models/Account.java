@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,11 +17,16 @@ public class Account {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long accountNum;
 	private String accountType;
+	
 	@ManyToOne
 	@JoinColumn(name="cust_id", nullable = false)
 	private CustomerDetails customer;
-	private String branch;
-	private String ifsc;
+	
+	@ManyToOne
+	@JoinColumn(name="branchIFSC",nullable= false)
+	private Branch branch;
+	
+	
 	public Account(long accountNum, String accountType, CustomerDetails customer) {
 		super();
 		this.accountNum = accountNum;
@@ -28,12 +34,11 @@ public class Account {
 		this.customer = customer;
 	}
 	
-	public Account(long accountNum, String accountType, CustomerDetails customer, String branch, String ifsc) {
+	public Account(long accountNum, String accountType, CustomerDetails customer, Branch branch) {
 		this.accountNum = accountNum;
 		this.accountType = accountType;
 		this.customer = customer;
 		this.branch = branch;
-		this.ifsc = ifsc;
 	}
 	
 	public long getAccountNum() {
@@ -54,17 +59,13 @@ public class Account {
 	public void setCustomer(CustomerDetails customer) {
 		this.customer = customer;
 	}
-	public String getBranch() {
+
+	public Branch getBranch() {
 		return branch;
 	}
-	public void setBranch(String branch) {
-		branch = this.branch;
-	}
-	public String getIfsc() {
-		return ifsc;
-	}
-	public void setIfsc(String ifsc) {
-		this.ifsc = ifsc;
+
+	public void setBranch(Branch branch) {
+		this.branch = branch;
 	}
 
 }
