@@ -43,7 +43,7 @@ public class CustomerServiceImpl implements CustomerService{
     
     @Override
     @Transactional
-    public Customer updateCustomer(long id,Customer customerDetails) {
+    public ResponseEntity<Customer> updateCustomer(long id,Customer customerDetails) {
     	Customer customer = customerRepository.findById(id).get();
     	
     	customer.setUsername(customerDetails.getUsername());
@@ -54,7 +54,7 @@ public class CustomerServiceImpl implements CustomerService{
     	customer.setPhoneNum(customerDetails.getPhoneNum());
     	customer.setPanId(customerDetails.getPanId());
     	
-    	return customerRepository.save(customer);
+    	return ResponseEntity.ok().body(customer);
     	
     }
     
