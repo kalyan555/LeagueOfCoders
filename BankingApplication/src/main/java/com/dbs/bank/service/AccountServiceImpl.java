@@ -10,12 +10,16 @@ import org.springframework.stereotype.Service;
 import com.dbs.bank.model.Account;
 import com.dbs.bank.model.Customer;
 import com.dbs.bank.repository.AccountRepository;
+import com.dbs.bank.repository.CustomerRepository;
 
 @Service
 public class AccountServiceImpl implements AccountService{
 	
 	@Autowired
 	private AccountRepository accountRepository;
+	
+	@Autowired
+	private CustomerRepository customerRepository;
 	
     @Autowired
 	public AccountServiceImpl(AccountRepository accountRepository) {
@@ -35,6 +39,8 @@ public class AccountServiceImpl implements AccountService{
 
 	@Override
 	public Account saveAccount(Account account) {
+		//Customer customer = customerRepository.findById(id).get();
+		//customerRepository.save(customer);
 		return accountRepository.save(account);
 	}
 

@@ -14,11 +14,11 @@ import lombok.Data;
 public class Account implements Serializable{
 	
 	@Id
-	//@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long accountNum;
 	private String accountType;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.PERSIST)
 	@JoinColumn(name="customer_id", nullable = false)
 	//@JsonBackReference
 	private Customer customer;
