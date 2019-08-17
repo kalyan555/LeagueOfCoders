@@ -25,9 +25,9 @@ public class AccountController {
 		return accountService.listAll();
 	}
 	
-	@PostMapping("/account")
-	public Account createAccount( @Valid @RequestBody Account account) {
-		return accountService.saveAccount(account);
+	@PostMapping("customer/{id}/account")
+	public Account createAccount(@PathVariable("id") Customer id, @Valid @RequestBody Account account) {
+		return accountService.saveAccount(id,account);
 		
 	}
 	

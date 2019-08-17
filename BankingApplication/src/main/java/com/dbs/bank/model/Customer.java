@@ -16,12 +16,19 @@ import lombok.Data;
 
 
 @Entity
-@Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"panId"})})
-//@EntityListeners(AuditingEntityListener.class)
-@JsonIgnoreProperties(value = {"createdAt", "updatedAt"}, 
-        allowGetters = true)
+@Table()
 public class Customer implements Serializable{
 	
+	public long getCust_id() {
+		return cust_id;
+	}
+
+
+	public void setCust_id(long cust_id) {
+		this.cust_id = cust_id;
+	}
+
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long cust_id;

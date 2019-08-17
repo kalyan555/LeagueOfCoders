@@ -13,7 +13,7 @@ import lombok.Data;
 //@Data
 @Entity
 @Table
-public class Account implements Serializable{
+public class Account {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,7 +28,7 @@ public class Account implements Serializable{
 		this.balance = balance;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.PERSIST)
+	@ManyToOne
 	@JoinColumn(name="cust_id", nullable = false)
 	//@JsonBackReference
 	private Customer customer;
@@ -37,8 +37,8 @@ public class Account implements Serializable{
 	@JoinColumn(name="branchIFSC",nullable= false)
 	private Branch branch;
 	
-	@OneToMany(mappedBy = "account", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
-	private Set<Transaction> Transactions = new HashSet<>();
+	@OneToMany(mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private Set<Transaction> transactions = new HashSet<>();
 	
 	
 	

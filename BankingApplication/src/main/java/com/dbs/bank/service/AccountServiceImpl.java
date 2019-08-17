@@ -37,8 +37,8 @@ public class AccountServiceImpl implements AccountService{
 	}
 
 	@Override
-	public Account saveAccount(Account account) {
-		// TODO Auto-generated method stub
+	public Account saveAccount(Customer id,Account account) {
+		System.out.println("Accounts : " + accountRepository.findByCustomer(id));
 		return accountRepository.save(account);
 	}
 
@@ -54,7 +54,6 @@ public class AccountServiceImpl implements AccountService{
 		Account account = accountRepository.findById(id).get();
 		account.setAccountType(accountDetails.getAccountType());
 		account.setBranch(accountDetails.getBranch());
-		accountRepository.save(account);
 		return ResponseEntity.ok().body(account);
 	}
 
