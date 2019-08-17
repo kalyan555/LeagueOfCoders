@@ -32,7 +32,13 @@ public class CustomerServiceImpl implements CustomerService{
     @Override
     @Transactional
     public Customer saveCustomer(Customer customer) {
+    	if((customerRepository.findByPanId(customer.getPanId())==null)
+    			&& (customerRepository.findByEmail(customer.getEmail())==null)
+    					&& (customerRepository.findByPhoneNum(customer.getPhoneNum())==null))
+    	{
     	return customerRepository.save(customer);
+    	}
+    	return null;
     }
     
     @Override
@@ -46,7 +52,6 @@ public class CustomerServiceImpl implements CustomerService{
     public ResponseEntity<Customer> updateCustomer(long id,Customer customerDetails) {
     	Customer customer = customerRepository.findById(id).get();
     	
-    	customer.setUsername(customerDetails.getUsername());
     	customer.setPassword(customerDetails.getPassword());
     	customer.setFirstname(customerDetails.getFirstname());
     	customer.setLastname(customerDetails.getLastname());
@@ -57,6 +62,27 @@ public class CustomerServiceImpl implements CustomerService{
     	return ResponseEntity.ok().body(customer);
     	
     }
+    
+    @Override
+    @Transactional
+	public Customer findByPanId(String panId) {
+		// TODO Auto-generated method stub
+		return customerRepository.findByPanId(panId);
+	}
+
+	@Override
+	@Transactional
+	public Customer findByEmail(String email) {
+		// TODO Auto-generated method stub
+		return customerRepository.findByEmail(email);
+	}
+
+	@Override
+	@Transactional
+	public Customer findByPhoneNum(String phoneNum) {
+		// TODO Auto-generated method stub
+		return customerRepository.findByPhoneNum(phoneNum);
+	}
     
     @Override
     @Transactional

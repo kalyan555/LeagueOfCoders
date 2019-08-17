@@ -18,9 +18,6 @@ public class AccountServiceImpl implements AccountService{
 	@Autowired
 	private AccountRepository accountRepository;
 	
-	@Autowired
-	private CustomerRepository customerRepository;
-	
     @Autowired
 	public AccountServiceImpl(AccountRepository accountRepository) {
 		super();
@@ -29,40 +26,52 @@ public class AccountServiceImpl implements AccountService{
 
 	@Override
 	public Optional<List<Account>> findByCustomer(Customer id) {
+		// TODO Auto-generated method stub
 		return this.accountRepository.findByCustomer(id);
 	}
 
 	@Override
 	public List<Account> listAll() {
+		// TODO Auto-generated method stub
 		return accountRepository.findAll();
 	}
 
 	@Override
 	public Account saveAccount(Account account) {
-		//Customer customer = customerRepository.findById(id).get();
-		//customerRepository.save(customer);
+		// TODO Auto-generated method stub
 		return accountRepository.save(account);
 	}
 
 	@Override
 	public Account findById(long id) {
+		// TODO Auto-generated method stub
 		return accountRepository.findById(id).get();
 	}
 
 	@Override
 	public ResponseEntity<Account> updateAccount(long id, Account accountDetails) {
+		// TODO Auto-generated method stub
 		Account account = accountRepository.findById(id).get();
 		account.setAccountType(accountDetails.getAccountType());
 		account.setBranch(accountDetails.getBranch());
-		account.setIfsc(accountDetails.getIfsc());
+		accountRepository.save(account);
 		return ResponseEntity.ok().body(account);
 	}
 
 	@Override
 	public ResponseEntity<?> deleteAccount(long id) {
+		// TODO Auto-generated method stub
 		Account account = accountRepository.findById(id).get();
 		accountRepository.delete(account);
 		return ResponseEntity.ok().build();
+	}
+
+	
+
+	@Override
+	public Account findByAccountType(Account accountType) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -7,22 +7,38 @@ import javax.persistence.*;
 
 import lombok.Data;
 
-@Data
+
 @Entity
 @Table
 public class Banker {
 	
 	@Id
-	private long id=1234;
-	private String password="dbs@1234";
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long id;
+	
+	private String adminName;
+	private String password;
+	
+	public Banker() {}
+	
+	public long getId() {
+		return id;
+	}
+	public String getAdminName() {
+		return adminName;
+	}
+	public String getPassword() {
+		return password;
+	}
 	
 	@Override
 	public String toString() {
-		return "Banker [id=" + id + ", password=" + password + "]";
+		return "Banker [id=" + id + ", adminName=" + adminName + ", password=" + password + "]";
 	}
-	public Banker(long id, String password) {
+	
+	public Banker(String adminName,String password) {
 		super();
-		this.id = id;
+		this.adminName=adminName;
 		this.password = password;
 	}
 }

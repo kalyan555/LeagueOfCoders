@@ -7,10 +7,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.dbs.bank.model.Account;
-import com.dbs.bank.model.Customer;
-@Repository
-public interface AccountRepository extends JpaRepository<Account, Long>{
+import com.dbs.bank.model.Transaction;
 
-	Optional<List<Account>> findByCustomer(Customer id);
-	Account findByAccountType(Account accountType);
+@Repository
+public interface TransactionRepository extends JpaRepository<Transaction, Long>{
+	Optional<List<Transaction>> findByAccount(Account id);
+	//Transaction findByTid(Transaction tid);
 }

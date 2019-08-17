@@ -21,5 +21,7 @@ public interface AccountService {
 	ResponseEntity<?> deleteAccount(long id);
 	
 	Optional<List<Account>> findByCustomer(Customer id);
+	
+	Account findByAccountType(Account accountType);
 
 }

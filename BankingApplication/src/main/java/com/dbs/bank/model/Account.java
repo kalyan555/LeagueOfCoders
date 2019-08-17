@@ -1,6 +1,8 @@
 package com.dbs.bank.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -17,14 +19,29 @@ public class Account implements Serializable{
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long accountNum;
 	private String accountType;
+	private double balance;
 	
+	public double getBalance() {
+		return balance;
+	}
+	public void setBalance(double balance) {
+		this.balance = balance;
+	}
+
 	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.PERSIST)
-	@JoinColumn(name="customer_id", nullable = false)
+	@JoinColumn(name="cust_id", nullable = false)
 	//@JsonBackReference
 	private Customer customer;
 	
-	private String branch;
-	private String ifsc;
+	@ManyToOne
+	@JoinColumn(name="branchIFSC",nullable= false)
+	private Branch branch;
+	
+	@OneToMany(mappedBy = "account", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+	private Set<Transaction> Transactions = new HashSet<>();
+	
+	
+	
 	
 	public String getAccountType() {
 		return accountType;
@@ -38,30 +55,30 @@ public class Account implements Serializable{
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
-	public String getBranch() {
+	public Branch getBranch() {
 		return branch;
 	}
-	public void setBranch(String branch) {
+	public void setBranch(Branch branch) {
 		this.branch = branch;
 	}
-	public String getIfsc() {
-		return ifsc;
-	}
-	public void setIfsc(String ifsc) {
-		this.ifsc = ifsc;
-	}
+	
 	
 	
     public Account() {}
-    
-	public Account(long accountNum, String accountType, String branch, String ifsc) {
-	
+	public Account(long accountNum, String accountType, Customer customer) {
+		super();
 		this.accountNum = accountNum;
 		this.accountType = accountType;
-		this.branch = branch;
-		this.ifsc = ifsc;
-		
+		this.customer = customer;
 	}
-
+	public Account(long accountNum, String accountType, Customer customer, Branch branch) {
+		super();
+		this.accountNum = accountNum;
+		this.accountType = accountType;
+		this.customer = customer;
+		this.branch = branch;
+	}
+    
+	
 	
 }
