@@ -36,7 +36,7 @@ public class TransactionServiceImpl implements TransactionService{
 
 	@Override
 	public Optional<List<Transaction>> findByAccount(Account id) {
-		return this.transactionRepository.findByAccount(id);
+		return this.transactionRepository.findByFromAccount(id);
 	}
 	
 	@Override

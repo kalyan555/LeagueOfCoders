@@ -13,19 +13,19 @@ import javax.persistence.Table;
 @Entity
 @Table
 public class Transaction {
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long tid;
-	
-	private long amount;
-    private long fromAccountNum;
-    private long toAccountNum;
+	private long ammount;
+
+    @ManyToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name="from_account", nullable = false)
+    private Account fromAccount;
     
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-	@JoinColumn(name="accountNum", nullable = false)
-    private Account account;
-    
+    @ManyToOne(cascade = CascadeType.PERSIST)
+	@JoinColumn(name="to_account", nullable = false)
+    private Account toAccount;
     
 	public long getTid() {
 		return tid;
@@ -33,41 +33,37 @@ public class Transaction {
 	public void setTid(long tid) {
 		this.tid = tid;
 	}
-	public long getAmount() {
-		return amount;
+	public long getAmmount() {
+		return ammount;
 	}
-	public void setAmount(long amount) {
-		this.amount = amount;
+	public void setAmmount(long ammount) {
+		this.ammount = ammount;
 	}
-	public long getFromAccountNum() {
-		return fromAccountNum;
-	}
-	public void setFromAccountNum(long fromAccountNum) {
-		this.fromAccountNum = fromAccountNum;
-	}
-	public long getToAccountNum() {
-		return toAccountNum;
-	}
-	public void setToAccountNum(long toAccountNum) {
-		this.toAccountNum = toAccountNum;
-	}
-	public Account getAccount() {
-		return account;
-	}
-	public void setAccount(Account account) {
-		this.account = account;
-	} 
+ 
 	public Transaction() {
-
+		super();
 	}
-	public Transaction(long tid, long amount, long fromAccountNum, long toAccountNum, Account account) {
+
+	
+
+	public Account getFromAccount() {
+		return fromAccount;
+	}
+	public void setFromAccount(Account fromAccount) {
+		this.fromAccount = fromAccount;
+	}
+	
+	public Transaction(long tid, long ammount, Account fromAccount, Account toAccount) {
 		super();
 		this.tid = tid;
-		this.amount = amount;
-		this.fromAccountNum = fromAccountNum;
-		this.toAccountNum = toAccountNum;
-		this.account = account;
+		this.ammount = ammount;
+		this.fromAccount = fromAccount;
+		this.toAccount = toAccount;
 	}
-
-
+	public Account getToAccount() {
+		return toAccount;
+	}
+	public void setToAccount(Account toAccount) {
+		this.toAccount = toAccount;
+	}
 }

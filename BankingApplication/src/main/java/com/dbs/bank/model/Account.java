@@ -37,7 +37,7 @@ public class Account {
 	@JoinColumn(name="branchIFSC",nullable= false)
 	private Branch branch;
 	
-	@OneToMany(mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "fromAccount", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Set<Transaction> transactions = new HashSet<>();
 	
 	
