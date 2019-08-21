@@ -1,6 +1,7 @@
 package com.leagueOfCoders.bank.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -44,14 +45,13 @@ public class CustomerServiceImpl implements CustomerService{
     
     @Override
     @Transactional
-    public CustomerDetails updateCustomer(long id,CustomerDetails customerDetails) {
-    	CustomerDetails customer = customerRepository.findById(id).get();
-    	    	customer.setPassword(customerDetails.getPassword());
+    public CustomerDetails updateCustomer(CustomerDetails customerDetails) {
+    	CustomerDetails customer = customerRepository.findById(customerDetails.getCust_id()).get();
     	customer.setFirstname(customerDetails.getFirstname());
     	customer.setLastname(customerDetails.getLastname());
     	customer.setEmail(customerDetails.getEmail());
-    	customer.setPhoneNum(customerDetails.getPhoneNum());
-    	customer.setPanId(customerDetails.getPanId());
+    	customer.setPhoneNumber(customerDetails.getPhoneNumber());
+    	customer.setPanID(customerDetails.getPanID());
     	
     	return customerRepository.save(customer);
     	
@@ -64,4 +64,11 @@ public class CustomerServiceImpl implements CustomerService{
     	customerRepository.delete(customer);
     	return ResponseEntity.ok().build();
     }
+
+	@Override
+	public Optional<CustomerDetails> findByEmailAndPassword(String email, String password) {
+		return this.customerRepository.findByEmailAndPassword(email, password);
+	}
+    
+    
 }

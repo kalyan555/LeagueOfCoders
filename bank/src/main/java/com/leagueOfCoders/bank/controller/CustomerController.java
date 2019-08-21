@@ -1,6 +1,7 @@
 package com.leagueOfCoders.bank.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import com.leagueOfCoders.bank.models.CustomerDetails;
 import com.leagueOfCoders.bank.service.CustomerService;
 
-
+@CrossOrigin
 @RestController
 @RequestMapping("/api/v1")
 public class CustomerController {
@@ -26,6 +27,7 @@ public class CustomerController {
 	
 	@PostMapping("/customer")
 	public CustomerDetails createCustomer(@Valid @RequestBody CustomerDetails customer) {
+		System.out.println(customer);
 		return customerService.saveCustomer(customer);
 		
 	}
@@ -35,10 +37,14 @@ public class CustomerController {
 		return customerService.findById(id);
 	}
 	
-	@PutMapping("/customer/{id}")
-	public CustomerDetails updateCustomer(@PathVariable("id") Long id,
-			@Valid @RequestBody CustomerDetails customerDetails) {
-		return customerService.updateCustomer(id, customerDetails);
+	@GetMapping("/customer/{email}/{password}")
+	public Optional<CustomerDetails> getCustomerByEmailAndPassword(@PathVariable("email") String email,@PathVariable("password") String password) {
+		return customerService.findByEmailAndPassword(email, password);
+	}
+	
+	@PutMapping("/customer")
+	public CustomerDetails updateCustomer(@RequestBody CustomerDetails customerDetails) {
+		return customerService.updateCustomer(customerDetails);
 	}
 	
 	@DeleteMapping("/customer/{id}")

@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -15,6 +16,11 @@ import javax.persistence.Table;
 @Entity
 @Table
 public class CustomerDetails {
+	
+	public CustomerDetails() {
+		super();
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long cust_id;
@@ -22,24 +28,34 @@ public class CustomerDetails {
 	private String firstname;
 	private String lastname;
 	private String email;
-	private String phoneNum;
-	private String panId;
+	private String phoneNumber;
+	@Column(columnDefinition="boolean default true")
+	private boolean activated;
+	private String panID;
 	
 	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Set<Account> accounts = new HashSet<>();
 	
 	public CustomerDetails(long cust_id, String username, String password, String firstname, String lastname, String email,
-			String phoneNum, String panId) {
+			String phoneNumber, String panID,Boolean activated) {
 		this.cust_id = cust_id;
 		this.password = password;
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.email = email;
-		this.phoneNum = phoneNum;
-		this.panId = panId;
-		
+		this.phoneNumber = phoneNumber;
+		this.panID = panID;
+		this.activated=activated;
 	}
 	
+	public boolean isActivated() {
+		return activated;
+	}
+
+	public void setActivated(boolean activated) {
+		this.activated = activated;
+	}
+
 	public long getCust_id() {
 		return cust_id;
 	}
@@ -72,23 +88,27 @@ public class CustomerDetails {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getPhoneNum() {
-		return phoneNum;
+
+	public String getPhoneNumber() {
+		return phoneNumber;
 	}
-	public void setPhoneNum(String phoneNum) {
-		this.phoneNum = phoneNum;
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
-	public String getPanId() {
-		return panId;
+
+	public String getPanID() {
+		return panID;
 	}
-	public void setPanId(String panId) {
-		this.panId = panId;
+
+	public void setPanID(String panID) {
+		this.panID = panID;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "CustomerDetails [cust_id=" + cust_id + ", password=" + password + ", firstname="
-				+ firstname + ", lastname=" + lastname + ", email=" + email + ", phoneNum=" + phoneNum + ", panId=" + panId
+				+ firstname + ", lastname=" + lastname + ", email=" + email + ", phoneNum=" + phoneNumber + ", panId=" + panID
 				+ "]";
 	}
 

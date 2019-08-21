@@ -1,6 +1,7 @@
 package com.leagueOfCoders.bank.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
 
@@ -14,8 +15,10 @@ public interface CustomerService {
 
 	CustomerDetails findById(long id);
 
-	CustomerDetails updateCustomer(long id, CustomerDetails customerDetails);
+	CustomerDetails updateCustomer(CustomerDetails customerDetails);
 
 	ResponseEntity<?> deleteCustomer(long id);
+	
+	Optional<CustomerDetails> findByEmailAndPassword(String email,String password);
 
 }

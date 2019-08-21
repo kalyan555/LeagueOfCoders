@@ -13,4 +13,6 @@ public interface BankerService {
     Banker findById(long empId);
 
     Optional<Banker> findByAdminNameAndPassword(String name,String pwd);
+    
+    Banker saveBanker(Banker banker);
 }

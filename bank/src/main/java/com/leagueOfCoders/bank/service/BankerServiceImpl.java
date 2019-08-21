@@ -35,6 +35,12 @@ public class BankerServiceImpl implements BankerService{
 	public Optional<Banker> findByAdminNameAndPassword(String name, String pwd) {
 		return this.bankerRepository.findByAdminNameAndPassword(name, pwd);
 	}
+
+
+	@Override
+	public Banker saveBanker(Banker banker) {
+		return this.bankerRepository.save(banker);
+	}
 	
 	
 

@@ -1,0 +1,51 @@
+
+      <div class="row">
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+              <h3 class="text-center">Make Transaction</h3>
+          </div>
+      </div>
+      <div class="row">
+
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" >
+          <div class="card" style="width:70%;margin:auto">
+              <div class="card-body">
+                  <form method="post" id="basicform" data-parsley-validate="">
+                      <div class="form-group">
+                          <label for="accountNumber">Enter Account Number</label>
+                          <input  type="text" 
+                                  ngModel 
+                                  required
+                                  #accountNumber="ngModel"
+                                  name="accountNumber"
+                                  class="form-control" 
+                                  id="accountNumber" 
+                                  aria-describedby="accountNumber"
+                                  required placeholder="Enter Account Number here..">
+<br/>
+                          <label for="ammount">Enter Ammount</label>
+                          <input  type="number" 
+                                  ngModel 
+                                  required
+                                  #ammount="ngModel"
+                                  name="ammount"
+                                  class="form-control" 
+                                  id="ammount" 
+                                  aria-describedby="ammount"
+                                  required placeholder="Enter Ammount here..">
+<br/>
+                            <label for="ammount">Select Account</label>
+                            <select class="form-control" id="ammount">
+                                <option value="accountId">Account Details</option>
+                            </select>
+
+                      </div>
+                      <div class="col-sm-12 pl-0">
+                          <p class="text-right">
+                              <button type="submit" class="btn btn-block btn-space btn-primary" name="submit">Make Transfer</button>
+                           </p>
+                      </div>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </div>

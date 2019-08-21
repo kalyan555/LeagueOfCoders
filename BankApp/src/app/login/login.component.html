@@ -1,0 +1,40 @@
+<link rel="stylesheet" href="./../assets/libs/css/style.css">
+<div class="splash-container" >
+    <div class="card ">
+        <div class="card-header text-center"><a href="../index.html">
+            <img class="logo-img" src="./assets/images/dbslogo.png" alt="logo" style="width:50%"></a>
+            <h3 class="mb-1"><br />{{userType}} Login Form</h3>
+        </div>
+        <div class="card-body">
+            <form method="post" ngForm #form = "ngForm" (ngSubmit)="login(form)">
+                <div class="form-group">
+                    <input id="email"  
+                            ngModel 
+                            type="email" 
+                            required
+                            #email="ngModel"
+                            name="email"
+                            class="form-control"
+                            aria-describedby="email"
+                            required placeholder="Enter Email">
+                </div>
+                <div class="form-group">
+                    <input id="password" 
+                            type="password" 
+                            ngModel 
+                            required
+                            #password="ngModel"
+                            name="password"
+                            class="form-control" 
+                            aria-describedby="password"
+                            required placeholder="Enter Password">
+                </div>
+               
+                <button type="submit" class="btn btn-primary btn-lg btn-block" name="signin">Sign in</button>
+            </form>
+        </div>
+        <div class="card-footer bg-white">
+            <p>{{otherUserType}} ? <a style="cursor: pointer" (click)="changeType()" class="text-primary">{{otherUserType}} Login Here.</a></p>
+        </div>           
+    </div>
+</div>

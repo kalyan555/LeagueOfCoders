@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -11,14 +12,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table
+@Table(uniqueConstraints={@UniqueConstraint(columnNames={"branchName"})})
 public class Branch {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long branchIFSC;
+	
 	private String branchName;
 	private String City;
 	private String State;
@@ -75,5 +78,4 @@ public class Branch {
 	}
 
 	
-
 }
