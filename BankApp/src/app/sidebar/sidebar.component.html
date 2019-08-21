@@ -12,9 +12,12 @@
                   </li>
                   <span *ngFor="let operation of operations">
                     <li class="nav-item ">
-                        <a [routerLink]="[operation.link]" [routerLinkActive]="['active']" class="nav-link" href="index.php" ><i class="fa fa-fw {{operation.icon}}"></i>{{operation.name}}</a>
+                        <a [routerLink]="[operation.link]" [routerLinkActive]="['active']" class="nav-link" ><i class="fa fa-fw {{operation.icon}}"></i>{{operation.name}}</a>
                     </li>
                 </span>
+                <li class="nav-item ">
+                        <a class="nav-link" (click)="logout()" style="cursor: pointer"><i class="fa fa-fw fa-power-off"></i>Logout</a>
+                    </li>
               </ul>
           </div>
       </nav>

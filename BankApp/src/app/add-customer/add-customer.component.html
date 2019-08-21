@@ -12,29 +12,29 @@
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" >
             <div class="card" style="width:70%;margin:auto">
                 <div class="card-body">
-                    <form method="post" id="basicform" data-parsley-validate="">
+                    <form method="post" ngForm #form = "ngForm" (ngSubmit)="addCustomer(form)">
                         <div class="form-group">
-                            <label for="firstName">First Name</label>
+                            <label for="firstname">First Name</label>
                             <input  type="text" 
                                     ngModel 
                                     required
-                                    #firstName="ngModel"
-                                    name="firstName"
+                                    #firstname="ngModel"
+                                    name="firstname"
                                     class="form-control" 
-                                    id="firstName" 
-                                    aria-describedby="firstName"
+                                    id="firstname" 
+                                    aria-describedby="firstname"
                                     required placeholder="Enter First name">
                         </div>
                         <div class="form-group">
-                            <label for="lastName">Last Name</label>
-                            <input id="lastName" 
+                            <label for="lastname">Last Name</label>
+                            <input id="lastname" 
                                     ngModel 
                                     type="text"  
                                     required
-                                    #lastName="ngModel"
-                                    name="firstName"
+                                    #lastname="ngModel"
+                                    name="lastname"
                                     class="form-control" 
-                                    aria-describedby="lastName"
+                                    aria-describedby="lastname"
                                     required placeholder="Enter Last name">
                         </div>
                         <div class="form-group">
@@ -51,28 +51,40 @@
                         </div>
                         <div class="form-group">
                             <label for="phone">Phone Number</label>
-                            <input id="phone"
+                            <input id="phoneNumber"
                                     ngModel
                                     type="text" 
                                     required
-                                    #email="ngModel"
-                                    name="phone"
-                                    aria-describedby="phone" 
+                                    #phoneNumber="ngModel"
+                                    name="phoneNumber"
+                                    aria-describedby="phoneNumber" 
                                     required placeholder="Enter Phone Number" 
                                     class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="PAN">PAN Number</label>
-                            <input id="PAN" 
+                            <label for="panID">PAN Number</label>
+                            <input id="panID" 
                                     ngModel
                                     type="text" 
-                                    name="PAN" 
+                                    name="panID" 
                                     required
-                                    #email="ngModel"
-                                    aria-describedby="PAN"
+                                    #panID="ngModel"
+                                    aria-describedby="panID"
                                     required placeholder="Enter PAN Number" 
                                     class="form-control">
                         </div>
+                        <div class="form-group">
+                                <label for="password">Temporary Password</label>
+                                <input id="password" 
+                                        ngModel
+                                        type="text" 
+                                        name="password" 
+                                        required
+                                        #password="ngModel"
+                                        aria-describedby="password"
+                                        required placeholder="Enter Temporary Password" 
+                                        class="form-control">
+                            </div>
                         <div class="col-sm-12 pl-0">
                             <p class="text-right">
                                 <button type="submit" class="btn btn-block btn-space btn-primary" name="submit">Submit</button>

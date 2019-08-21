@@ -5,26 +5,50 @@
                 <h3 class="text-center">Edit Customer </h3>
             </div>
         </div>
-        <div class="row">
-            <!-- ============================================================== -->
-            <!-- basic form -->
-            <!-- ============================================================== -->
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" >
-                <form method="post" id="basicform" data-parsley-validate="">
-                        <div class="form-group">
-                            <label for="firstName">Enter Customer Name</label>
-                            <input  type="text" 
-                                    ngModel 
-                                    required
-                                    #firstName="ngModel"
-                                    name="firstName"
-                                    class="form-control" 
-                                    id="firstName" 
-                                    aria-describedby="firstName"
-                                    required placeholder="Enter Customer name">
+        <form method="post" id="basicform" data-parsley-validate="">
+                <div class="form-group">
+                        <label for="customerName">Enter Customer Name to Filter</label>
+                        <input [(ngModel)]="customerName"
+                                type="text" 
+                                (keyup)="onCustomerNameChange()"
+                                name="customerName" 
+                                id="customerName"
+                                class="form-control" 
+                                aria-describedby="firstName"
+                                required placeholder="Enter Customer name">
+                </div>
+        </form>
+                <div class="card">
+                    <h5 class="card-header">Customers List</h5>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered first">
+                                <thead>
+                                    <tr>
+                                        <th>Customer ID</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Phone Number</th>
+                                        <th>PAN ID</th>
+                                        <th>Status</th>
+                                        <th>Edit User</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let customer of searchResults">
+                                        <td>{{customer.cust_id}}</td>
+                                        <td>{{customer.firstname}} {{customer.lastname}}</td>
+                                        <td>{{customer.email}}</td>
+                                        <td>{{customer.phoneNumber}}</td>
+                                        <td>{{customer.panID}}</td>
+                                        <td [style.color]="customer?.activated? 'LawnGreen':'red'">{{customer.activated?'Active':'Inactive'}}</td>
+                                        <td><button class="btn btn-primary btn-block" (click)="editDetails(customer)">Edit</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>  
                         </div>
-                </form>
-        </div>
-    </div>
+                    </div>
+                </div> 
+                 
 </div>
 </div>

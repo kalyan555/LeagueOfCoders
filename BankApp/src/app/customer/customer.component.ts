@@ -13,7 +13,6 @@ export class CustomerComponent implements OnInit {
 
   ngOnInit() {
     this.userType = this.route.snapshot.data['userType'];
-    console.log(this.userType);
-  }
+    }
 
 }

@@ -16,6 +16,8 @@ import { AccountInfoComponent } from './account-info/account-info.component';
 import { TransactionComponent } from './transaction/transaction.component';
 import { TransactionHistoryComponent } from './transaction-history/transaction-history.component';
 import { AddAccountComponent } from './add-account/add-account.component';
+import {HttpClientModule} from '@angular/common/http';
+import { EditCustomerDetailsComponent } from './edit-customer-details/edit-customer-details.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,12 +32,14 @@ import { AddAccountComponent } from './add-account/add-account.component';
     AccountInfoComponent,
     TransactionComponent,
     TransactionHistoryComponent,
-    AddAccountComponent
+    AddAccountComponent,
+    EditCustomerDetailsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

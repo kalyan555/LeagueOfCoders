@@ -1,3 +1,54 @@
-<p>
-  add-account works!
-</p>
+<div class="dashboard-wrapper">
+    <div class="container-fluid dashboard-content">
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <h3 class="text-center">Add Account </h3>
+            </div>
+        </div>
+        <div class="row">
+            <!-- ============================================================== -->
+            <!-- basic form -->
+            <!-- ============================================================== -->
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" >
+            <div class="card" style="width:70%;margin:auto">
+                <div class="card-body">
+                    <form method="post" ngForm #form = "ngForm" (ngSubmit)="addAccount(form)">
+                        <div class="form-group">
+                            <label for="accountType">Select Account Type</label>
+                            <select class="form-control"
+                                    ngModel="Select Here"
+                                    name="accountType"
+                                    #accountType="ngModel"
+                                    id="accountType">
+                                <option disabled>Select Here</option>
+                                <option value="savings">Savings</option>
+                                <option value="current">Current</option>
+                                <option value="fixed">Fixed</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="branch">Select Branches</label>
+                            <select class="form-control" 
+                                    ngModel="IFSC - Name - City - State - Pincode"
+                                    name="branch"         
+                                    #branch="ngModel"
+                                    id="branch">
+                                <option disabled>IFSC - Name - City - State - Pincode</option>
+                                <option *ngFor="let branch of branches" [value]="branch.branchIFSC" >
+                                  {{branch.branchIFSC}} - {{branch.branchName}} - {{branch.city}} - {{branch.state}} - {{branch.pincode}}
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-sm-12 pl-0">
+                            <p class="text-right">
+                                <button type="submit" class="btn btn-block btn-space btn-primary" name="submit">Add Account</button>
+                             </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CustomerService } from '../Services/customer.service';
 
 @Component({
   selector: 'app-profile',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+  userDetails;
+  constructor(private customerService:CustomerService) { }
 
   ngOnInit() {
+    this.customerService.findById(localStorage.getItem('userId')).subscribe(res => {
+      console.log(res);
+      this.userDetails=res;
+    });
+    //console.log(this.userDetails);
   }
 
 }

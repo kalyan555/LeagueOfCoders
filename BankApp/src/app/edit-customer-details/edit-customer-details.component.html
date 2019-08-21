@@ -1,0 +1,153 @@
+<div class="dashboard-wrapper">
+    <div class="container-fluid dashboard-content" >
+        <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                <h3 class="text-center">{{customer?.firstname |uppercase}} {{customer?.lastname |uppercase}} DETAILS </h3>
+                <h4 class="text-center">Customer Status: <span [style.color]="customer?.activated? 'LawnGreen':'red'"><i class="fa fa-fw fa-circle mr-2"></i>{{customer.activated?'Active':'Inactive'}}</span></h4>
+            </div>
+        </div>
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" >
+            <div class="card" style="width:70%;margin:auto">
+                <div class="card-body">
+                    <form method="post" ngForm #form = "ngForm">
+                        <div class="form-group">
+                            <label for="firstname">First Name</label>
+                            <input  type="text" 
+                                    [disabled]="isDisabled"
+                                    ngModel={{customer?.firstname}}
+                                    required
+                                    #firstname="ngModel"
+                                    name="firstname"
+                                    class="form-control" 
+                                    id="firstname" 
+                                    value={{customer?.firstname}}
+                                    aria-describedby="firstname"
+                                    required placeholder="Enter First name">
+                        </div>
+                        <div class="form-group">
+                            <label for="lastname">Last Name</label>
+                            <input id="lastname"
+                            [disabled]="isDisabled" 
+                                    ngModel={{customer?.lastname}} 
+                                    type="text"  
+                                    required
+                                    #lastname="ngModel"
+                                    name="lastname"
+                                    class="form-control" 
+                                    value={{customer?.lastname}}
+                                    aria-describedby="lastname"
+                                    required placeholder="Enter Last name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Id</label>
+                            <input id="email"  
+                                    ngModel={{customer?.email}}
+                                    [disabled]="isDisabled"
+                                    type="email" 
+                                    required
+                                    #email="ngModel"
+                                    name="email"
+                                    value={{customer?.email}}
+                                    class="form-control" 
+                                    aria-describedby="email"
+                                    required placeholder="Enter Email">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input id="phoneNumber"
+                                    ngModel={{customer?.phoneNumber}}
+                                    type="text" 
+                                    [disabled]="isDisabled" 
+                                    required
+                                    #phoneNumber="ngModel"
+                                    name="phoneNumber"
+                                    aria-describedby="phoneNumber" 
+                                    value={{customer?.phoneNumber}}
+                                    required placeholder="Enter Phone Number" 
+                                    class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="panID">PAN Number</label>
+                            <input id="panID" 
+                                    ngModel={{customer?.panID}}
+                                    [disabled]="isDisabled"
+                                    type="text" 
+                                    name="panID" 
+                                    required
+                                    #panID="ngModel"
+                                    aria-describedby="panID"
+                                    value={{customer?.panID}}
+                                    required placeholder="Enter PAN Number" 
+                                    class="form-control">
+                        </div>
+                        <div class="col-sm-12 pl-0">
+                            <p class="text-right">
+                                <button type="button" class="btn btn-block btn-space btn-primary" name="submit" (click)="editOrSave(form)">{{isDisabled?'Edit':'Submit'}}</button>
+                             </p>
+                        </div>
+                        <div class="col-sm-12 pl-0">
+                                <p class="text-right">
+                                    <button type="button" class="btn btn-block btn-space btn-primary" name="deactivate" (click)=deactivate(customer)>{{customer?.activated?'Deactivate':'Activate'}} Customer</button>
+                                 </p>
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+<br/><br/>
+<h4 class="text-center">{{infoMessage}}</h4>
+
+                <h3 class="text-center"> ACCOUNT DETAILS</h3>
+
+        <div class="row">
+              <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12"  *ngFor="let account of accounts">
+                  <div class="card">
+                      <div class="card-body">
+                          <div class="text-center">
+                              <h4>Account Number</h4>
+                              <h3>{{account?.accountNum}}</h3>
+                              <h4>Account Balance</h4>
+                              <h3>{{account?.balance}}</h3>
+                          </div>
+                      </div>
+                      <div class="card-body border-top">
+                          <h3 class="font-16">Account Details</h3>
+                          <div class="">
+                              <ul class="list-unstyled mb-0">
+                              <li class="mb-2"><i class="fa fa-fw fa-circle mr-2"></i>Account Type: {{account?.accountType}}</li>
+                              <li class="mb-2"><i class="fa fa-fw fa-circle mr-2"></i>Account Status: <span [style.color]="account?.activated? 'LawnGreen':'red'"><i class="fa fa-fw fa-circle mr-2"></i>{{account.activated?'Active':'Inactive'}}</span></li>
+                            </ul>
+                          </div>
+                      </div>
+                      <div class="card-body border-top">
+                          <h3 class="font-16">Branch Details</h3>
+                          <div class="">
+                              <ul class="list-unstyled mb-0">
+                                  <li class="mb-2"><i class="fa fa-fw fa-circle mr-2"></i>IFSC Code: {{account?.branch.branchIFSC}}</li>
+                                  <li class="mb-2"><i class="fa fa-fw fa-circle mr-2"></i>Branch Name: {{account?.branch.branchName}}</li>
+                                  <li class="mb-2"><i class="fa fa-fw fa-circle mr-2"></i>Branch City: {{account?.branch.city}}</li>
+                                  <li class="mb-2"><i class="fa fa-fw fa-circle mr-2"></i>Branch State: {{account?.branch.state}}</li>
+                                  <li class="mb-2"><i class="fa fa-fw fa-circle mr-2"></i>Branch Pincode : {{account?.branch.pincode}}</li>
+                                </ul>
+                          </div>
+                      </div>
+                      <div class="card-footer d-flex text-muted">
+                          <button class="btn btn-primary btn-block">Show Transactions</button> <br/>  
+                      </div>
+                      <div class="card-footer d-flex text-muted">
+                            <button class="btn btn-primary btn-block" (click)=setAccountStatus(account)>{{account?.activated?'Deactivate':'Activate'}}</button>
+                      </div>
+                  </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
+                <div class="card" (click)="addAccount()" style="cursor: pointer">
+                    <div class="card-body">
+                        <div class="text-center">
+                            <i class="fa fa-fw  fa-plus-circle fa-10x mr-2 text-primary" style="font-size: 35px"></i><br/><br/>Add Account
+                        </div>
+                    </div>
+                  </div>
+                </div>
+    </div>
+  </div>
+</div>

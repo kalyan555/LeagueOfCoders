@@ -9,6 +9,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { AccountInfoComponent } from './account-info/account-info.component';
 import { TransactionComponent } from './transaction/transaction.component';
 import { TransactionHistoryComponent } from './transaction-history/transaction-history.component';
+import { EditCustomerDetailsComponent } from './edit-customer-details/edit-customer-details.component';
+import { AddAccountComponent } from './add-account/add-account.component';
 
 const routes: Routes = [
   {
@@ -28,7 +30,8 @@ const routes: Routes = [
       {path:'',redirectTo:"add",pathMatch:"full"},
       {path:"add",component:AddCustomerComponent},
       {path:"edit",component:EditCustomerComponent},
-      {path:"logout",redirectTo:'login',pathMatch:'full'}
+      {path:"edit/editCustomer/:id",component:EditCustomerDetailsComponent},
+      {path:"edit/editCustomer/:id/addAccount",component:AddAccountComponent}
     ]
   },
   {
@@ -41,7 +44,6 @@ const routes: Routes = [
       {path:"viewAccounts",component:AccountInfoComponent},
       {path:"transaction",component:TransactionComponent},
       {path:"history",component:TransactionHistoryComponent},
-      {path:"logout",redirectTo:'login',pathMatch:'full'}
     ]
   }
 ];

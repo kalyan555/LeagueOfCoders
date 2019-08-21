@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CustomerService } from '../Services/customer.service';
 
 @Component({
   selector: 'app-add-customer',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddCustomerComponent implements OnInit {
 
-  constructor() { }
+  constructor(private customerService:CustomerService) { }
 
   ngOnInit() {
   }
-
+  addCustomer(formData){
+    let data=formData.value;
+    data["activated"]=true;
+    this.customerService.addCustomer(data);
+    formData.reset();
+  }
 }

@@ -9,24 +9,22 @@
         <div class="card">
             <div class="card-body">
                 <div class="text-center">
-                    <h2 class="font-24 mb-0">Michael J. Christy</h2>
-                    <p>Project Manager @Influnce</p>
+                    <h2 class="font-24 mb-0">{{userDetails?.firstname}} {{userDetails?.lastname}}</h2>
                 </div>
             </div>
             <div class="card-body border-top">
                 <h3 class="font-16">Contact Information</h3>
                 <div class="">
                     <ul class="list-unstyled mb-0">
-                    <li class="mb-2"><i class="fas fa-fw fa-envelope mr-2"></i>michaelchristy@gmail.com</li>
-                    <li class="mb-0"><i class="fas fa-fw fa-phone mr-2"></i>(900) 123 4567</li>
+                        <ul class="list-unstyled mb-0">
+                            <li class="mb-2"><i class="fa fa-fw fa-circle mr-2"></i>Email: {{userDetails?.email}}</li>
+                            <li class="mb-2"><i class="fa fa-fw fa-circle mr-2"></i>First Name: {{userDetails?.firstname}}</li>
+                            <li class="mb-2"><i class="fa fa-fw fa-circle mr-2"></i>Last Name: {{userDetails?.lastname}}</li>
+                            <li class="mb-2"><i class="fa fa-fw fa-circle mr-2"></i>PAN Number: {{userDetails?.panId}}</li>
+                            <li class="mb-2"><i class="fa fa-fw fa-circle mr-2"></i>Phone Number: {{userDetails?.phoneNum}}</li>
+                        </ul>
+                        
                 </ul>
-                </div>
-            </div>
-            
-            <div class="card-body border-top">
-                <h3 class="font-16">Category</h3>
-                <div>
-                    <a href="#" class="badge badge-light mr-1">Fitness</a><a href="#" class="badge badge-light mr-1">Life Style</a><a href="#" class="badge badge-light mr-1">Gym</a>
                 </div>
             </div>
         </div>

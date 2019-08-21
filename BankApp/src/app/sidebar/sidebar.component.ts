@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
@@ -14,10 +15,6 @@ export class SidebarComponent implements OnInit {
     icon:"fa-cog",
     name:"Edit Customer",
     link:"edit"
-  },{
-    icon:"fa-power-off",
-    name:"Logout",
-    link:"logout"
   }]
 
   userOperations=[
@@ -37,21 +34,20 @@ export class SidebarComponent implements OnInit {
       icon:"fa-history",
       name:"View Transactions",
       link:"history"
-    },{
-      icon:"fa-power-off",
-      name:"Logout",
-      link:"logout"
     }]
   operations;
 
   @Input('data') userType:string;
-  constructor() { }
+  constructor(private route:Router) { }
 
   ngOnInit() {
-    console.log(this.userType);
     if(this.userType==='bank')
       this.operations=this.bankerOperations;
     else if(this.userType==='user')
             this.operations=this.userOperations;
+  }
+
+  logout(){
+    this.route.navigateByUrl('login');
   }
 }
